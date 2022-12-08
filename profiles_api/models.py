@@ -6,7 +6,7 @@ from django.contrib.auth.models import BaseUserManager
 
 class UserModelManager(BaseUserManager):
 
-    def create_user(self, name, email, password=None):
+    def create_user(self, email, name, password=None):
         if not email:
             raise ValueError("please fill in the email field")
 
@@ -18,13 +18,14 @@ class UserModelManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, name, email, password):
+    def create_superuser(self, email, name, password):
 
         user = self.create_user(email, name, password)
+
         user.is_superuser = True
         user.is_staff = True
+        user.is_active = True
         user.save(using=self._db)
-
         return user
 
 
