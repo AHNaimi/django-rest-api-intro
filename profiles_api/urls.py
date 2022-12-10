@@ -11,5 +11,7 @@ router.register('profile', views.UserProfileViewSet)
 app_name = 'api'
 urlpatterns = [
     path('hello/', views.HelloApiView.as_view(), name='hello'),
+    path('login/',views.UserLoginApi.as_view()),
     path('', include(router.urls))
 ]
+""" for path(login/) you have to insert email instead of username in Username field """
